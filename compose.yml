@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  mysql-with-mecab:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: mysql:8.3.0
+    volumes:
+      - ./conf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./conf/mecabrc:/usr/lib64/mysql/mecab/etc/mecabrc
+      - ./data:/var/lib/mysql
+    environment:
+      TZ: 'Asia/Tokyo'
+      MYSQL_USER: ft
+      MYSQL_PASSWORD: ft
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
