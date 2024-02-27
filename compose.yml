@@ -1,10 +1,11 @@
 version: '3.8'
 services:
   mysql-with-mecab:
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    image: mysql:8.3.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: mysql:8.3.0
+    platform: linux/amd64 # M2 Macはarm64のためamd64を動かせない。そのため、platformを指定する。
     volumes:
       - ./conf/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./conf/mecabrc:/usr/lib64/mysql/mecab/etc/mecabrc
